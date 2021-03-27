@@ -72,6 +72,24 @@ public class CompraController extends HttpServlet {
 			e.printStackTrace();
 		}		
 	}
+	/* AJUSTE DEL PROYECTO */
+	
+	private void verCheque(HttpServletRequest request, HttpServletResponse response) {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("verCheques.jsp");
+        try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	 
+	
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

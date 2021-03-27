@@ -1,5 +1,6 @@
 package main.java.uia.com.contabilidad.cheques;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,6 +10,7 @@ import main.java.uia.com.contabilidad.clientes.InfoUIA;
 import main.java.uia.com.contabilidad.clientes.ListaInfoUIA;
 import main.java.uia.com.contabilidad.clientes.ListaNotaDebito;
 import main.java.uia.com.contabilidad.cuentas.Cuenta;
+import main.java.uia.com.presentacion.ClienteJSP;
 
 public class Cheque extends InfoUIA
 {
@@ -63,6 +65,11 @@ public class Cheque extends InfoUIA
 			
 			this.getItems().add(miNotaDebito);
 			
+		}
+
+		public ArrayList<ClienteJSP> getLista() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	
 }

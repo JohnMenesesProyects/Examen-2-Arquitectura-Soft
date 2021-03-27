@@ -4,28 +4,63 @@ import java.util.ArrayList;
 
 import main.java.uia.com.contabilidad.clientes.InfoUIA;
 import main.java.uia.com.contabilidad.gestor.DecoradorProveedores;
+import main.java.uia.com.contabilidad.gestor.DecoradorCheques; /* AGREGADO*/
 import main.java.uia.com.contabilidad.gestor.Gestor;
 import main.java.uia.com.contabilidad.proveedores.Proveedor;
+import main.java.uia.com.contabilidad.cheques.Cheque; /*AGREGADO*/
 import main.java.uia.com.presentacion.ClienteJSP;
 
 public class ContabilidadUIA {
 		
 	    public Gestor contabilidad =  null;
 		public DecoradorProveedores gestorProveedores = null;		
+		public DecoradorCheques gestorCheques = null; /* AGREGADO*/		
+
 		public ArrayList<ClienteJSP> listaProveedores = null;
 		public ArrayList<ClienteJSP> listaCuentas = null;
 		public ArrayList<ClienteJSP> listaCompras = null;
+		public ArrayList<ClienteJSP> listaCheques= null; /* AGREGADO*/
+		
+		
 		public Proveedor proveedor = null;
+		public Cheque cheque = null; /* AGREGADO*/
 		public String clienteId="";
 
 		public ContabilidadUIA()
 		{
-		 contabilidad = new Gestor("C:\\TSU-UIA\\2021-P\\GitHubWeb\\ContabilidadUIA-web\\ListaProveedores.json");		
+			
+			/*Cambio de ruta*/
+		 contabilidad = new Gestor("C:\\Users\\jonat\\Documents\\ContabilidadUIA-MVC-JSP-Examen-master\\ContabilidadUIA-web-MVC-JSP\\ListaProveedores.json");		
 		 gestorProveedores = new DecoradorProveedores(contabilidad, "proveedor");		 
 		 gestorProveedores.Print();
 		 listaProveedores = gestorProveedores.getLista();
 		}
+		/*GETTERS AND SETTERS AÑADIDOS PARA LA LISTA*/
+		public ArrayList<ClienteJSP> getListaCheques() {
+			return listaCheques;
+		}
+
+
+		public void setListaCheques(ArrayList<ClienteJSP> listaCheques) {
+			this.listaCheques = listaCheques;
+		}
 		
+		/* MÉTODO PARA DESPLEGAR LISTA DE CHEQUES*/
+		
+		public ArrayList<ClienteJSP> getCheques1(String clienteId) {
+			this.clienteId = clienteId;
+			cheque = (Cheque) this.gestorCheques.busca(clienteId);
+			listaCheques = cheque.getLista();
+			this.getCuentas(clienteId);
+			return listaCheques;
+		}
+
+		public ArrayList<ClienteJSP> getListaCheques(String clienteId) {
+			this.clienteId = clienteId;
+			getCheques1(this.clienteId);
+			return listaCheques;
+		}
+		/*////*/
 		
 		public ArrayList<ClienteJSP> getListaProveedores(String clienteName) {
 			return listaProveedores;
